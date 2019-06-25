@@ -58,7 +58,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Welcome to LiteNote! Official Timestamp June 18, 2019!";
+    const char* pszTimestamp = "Welcome to Sorcoin! Official Timestamp June 18, 2019!";
     const CScript genesisOutputScript = CScript() << ParseHex("0494ce6068aff2d4de3810e88586dd4f9f7940ddc27deb7111a26fa2e1abdd21ff4b2e1609fc1c95f29c09784cc46a446cb7b7956dcc119c3e4502abc012b95a55") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
