@@ -21,7 +21,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
     unsigned int nPremineLimit = UintToArith256(params.premineLimit).GetCompact();
 
-    if (pindexLast->nHeight <= 100) return nPremineLimit;
+    if (pindexLast->nHeight <= 101) return nPremineLimit;
     if (pindexLast->nHeight <= 116) return nProofOfWorkLimit;
     // Only change once per difficulty adjustment interval
     if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0)
