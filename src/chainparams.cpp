@@ -125,7 +125,7 @@ public:
          */
         pchMessageStart[0] = 0x70;
         pchMessageStart[1] = 0x02;
-        pchMessageStart[2] = 0x42;
+        pchMessageStart[2] = 0x45;
         pchMessageStart[3] = 0x42;
         nDefaultPort = 9440;
         nPruneAfterHeight = 100000;
@@ -145,14 +145,14 @@ public:
         // release ASAP to avoid it where possible.
         vSeeds.emplace_back("dns-seed.litenote.ronsor.pw");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,62);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,63);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,63);
+        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,69);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,125);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x42, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x42, 0x88, 0xAD, 0xE4};
 
-        bech32_hrp = "xsr";
+        bech32_hrp = "xsn";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
