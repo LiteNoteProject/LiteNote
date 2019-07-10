@@ -710,7 +710,7 @@ fs::path GetDefaultDataDir()
     // Unix: ~/.bitcoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "LiteNote";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "LiteNoteCore";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -720,10 +720,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/LiteNote";
+    return pathRet / "Library/Application Support/LiteNoteCore";
 #else
     // Unix
-    return pathRet / ".litenote";
+    return pathRet / ".litenotecore";
 #endif
 #endif
 }
