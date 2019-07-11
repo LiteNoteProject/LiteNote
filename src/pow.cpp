@@ -68,15 +68,23 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
 {
     if (params.fPowNoRetargeting)
         return pindexLast->nBits;
+    if ((pindexLast->nHeight+1) == 2980)
+        return nProofOfWorkLimit;
 
     // Limit adjustment step
     int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
     // LIP-002 sane difficulty limits
-    if (nActualTimespan < params.nPowTargetTimespan/2)
-        nActualTimespan = params.nPowTargetTimespan/2; // prevent ridiculous retargeting
-    if (nActualTimespan > params.nPowTargetTimespan*6)
+    if (pindexLast->nHeight < 2980) {
+        if (nActualTimespan < params.nPowTargetTimespan/4)
+        nActualTimespan = params.nPowTargetTimespan/4;
+        if (nActualTimespan > params.nPowTargetTimespan*4)
+        nActualTimespan = params.nPowTargetTimespan*4;
+    } else {
+        if (nActualTimespan < params.nPowTargetTimespan/2)
+        nActualTimespan = params.nPowTargetTimespan/2;
+        if (nActualTimespan > params.nPowTargetTimespan*6)
         nActualTimespan = params.nPowTargetTimespan*6;
-
+    }
     // Retarget
     arith_uint256 bnNew;
     arith_uint256 bnOld;
