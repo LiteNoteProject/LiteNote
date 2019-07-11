@@ -24,7 +24,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     if (pindexLast->nHeight <= (PREMINEHEIGHT + 1)) return nPremineLimit;
     if (pindexLast->nHeight <= (PREMINEHEIGHT + 4)) return nProofOfWorkLimit;
     // LIP-002 Reduce difficulty at block 3100
-    if ((pindexLast->nHeight+1) == 3100) return nProofOfWorkLimit;
+    if ((pindexLast->nHeight+1) == 2980) return nProofOfWorkLimit;
     // Only change once per difficulty adjustment interval
     if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0)
     {
