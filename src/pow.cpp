@@ -23,6 +23,8 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     if (pindexLast->nHeight <= (PREMINEHEIGHT + 1)) return nPremineLimit;
     if (pindexLast->nHeight <= (PREMINEHEIGHT + 4)) return nProofOfWorkLimit;
+    // LIP-002 Reduce difficulty at block 3100
+    if ((pindexLast->nHeight+1) == 3100) return nProofOfWorkLimit;
     // Only change once per difficulty adjustment interval
     if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0)
     {
@@ -69,10 +71,10 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
 
     // Limit adjustment step
     int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
-    if (nActualTimespan < params.nPowTargetTimespan/4)
-        nActualTimespan = params.nPowTargetTimespan/4;
-    if (nActualTimespan > params.nPowTargetTimespan*4)
-        nActualTimespan = params.nPowTargetTimespan*4;
+    if (nActualTimespan < params.nPowTargetTimespan/2)
+        nActualTimespan = params.nPowTargetTimespan/2; // prevent ridiculous retargeting
+    if (nActualTimespan > params.nPowTargetTimespan*6)
+        nActualTimespan = params.nPowTargetTimespan*6;
 
     // Retarget
     arith_uint256 bnNew;
