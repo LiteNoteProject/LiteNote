@@ -66,6 +66,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
+    unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
     if (params.fPowNoRetargeting)
         return pindexLast->nBits;
     if ((pindexLast->nHeight+1) == 2980)
